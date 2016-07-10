@@ -29,16 +29,16 @@ source $DIR/configs/$SITE.cfg
 
 #Overwrite defaults if supplied as an argument
 if [ "$ARG_BRANCH" != "" ]; then
-  $BRANCH=$ARG_BRANCH
+  BRANCH=$ARG_BRANCH
 fi
 
 if [ "$ARG_HOST" != "" ]; then
-  $HOST=$ARG_HOST
+  HOST=$ARG_HOST
 fi
 
 cd $CODE_DIR
 
-git fetch -all
+git fetch --all
 git reset --hard $BRANCH
 
-echo "This is the deploy script on the server!"
+echo "End of serverdeploy script"
