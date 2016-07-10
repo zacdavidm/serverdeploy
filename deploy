@@ -3,8 +3,6 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
-echo "THIS IS ME TESTING THINGS"
-
 while [ $# -gt 0 ]; do
   ARGUMENT=$1 # example --name=value
 
