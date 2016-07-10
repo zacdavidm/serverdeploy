@@ -1,0 +1,44 @@
+#/bin/bash
+# where am i? move to where I am. This ensures source is properly sourced
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
+
+while [ $# -gt 0 ]; do
+  ARGUMENT=$1 # example --name=value
+
+  ARGUMENT=$(sed 's/=.*$//g' <<< "$ARGUMENT")
+  ARGUMENT=$(sed 's/--//g' <<< "$ARGUMENT")
+
+  VALUE="${1#*=}"
+  case $ARGUMENT in
+  "site")
+    SITE=$VALUE
+    ;;
+  "branch")
+    ARG_BRANCH=$VALUE
+    ;;
+  "host")
+    ARG_HOST=$VALUE
+    ;;
+  esac
+  shift
+done
+
+#Load config file and defaults it contains
+source $DIR/configs/$SITE.cfg
+
+#Overwrite defaults if supplied as an argument
+if [ "$ARG_BRANCH" != "" ]; then
+  $BRANCH=$ARG_BRANCH
+fi
+
+if [ "$ARG_HOST" != "" ]; then
+  $HOST=$ARG_HOST
+fi
+
+cd $CODE_DIR
+
+git fetch -all
+git reset --hard $BRANCH
+
+echo "This is the deploy script on the server!"
