@@ -38,9 +38,19 @@ if [ "$ARG_HOST" != "" ]; then
   HOST=$ARG_HOST
 fi
 
+echo "cd $CODE_DIR"
 cd $CODE_DIR
 
+echo "git fetch --all"
 git fetch --all
+
+echo "git branch -a"
+git branch -a
+
+echo "git status"
+git status
+
+echo "git reset --hard $BRANCH"
 git reset --hard $BRANCH
 
 echo "End of serverdeploy script"
