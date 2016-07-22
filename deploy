@@ -39,8 +39,8 @@ fi
 echo "cd $CODE_DIR"
 cd $CODE_DIR
 
-echo "git fetch origin"
-git fetch origin
+echo "git fetch --all"
+git fetch --all
 
 echo "git branch -a"
 git branch -a
