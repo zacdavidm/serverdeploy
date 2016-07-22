@@ -51,4 +51,7 @@ git status
 echo "git reset --hard $BRANCH"
 git reset --hard $BRANCH
 
+echo "eval POSTDEPLOY"
+eval "$POSTDEPLOY"
+
 echo "End of serverdeploy script"
